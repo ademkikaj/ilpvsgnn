@@ -1,0 +1,7 @@
+models: ["GINE","GCN","GlobalAttentionNet","SAGPool"]
+layers: [3,4]
+hidden_dims: [32,64]
+repetitions: 2
+
+
+

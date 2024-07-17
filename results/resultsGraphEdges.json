@@ -1,0 +1,55 @@
+{
+    "dataset_name": "Bongard",
+    "dataset_type": "GraphEdges",
+    "num_reps": 5,
+    "layers": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "hidden_dims": [
+        32,
+        64,
+        128
+    ],
+    "max_num_epochs": 200,
+    "batch_size": 64,
+    "start_lr": 0.01,
+    "datasetSize": 392,
+    "positives": 228,
+    "negatives": 164,
+    "Size results GINE": {
+        "50": {
+            "Accuracy": 73.2,
+            "std all": 4.308131845707604,
+            "std complete": 22.48910847499296
+        },
+        "100": {
+            "Accuracy": 88.4,
+            "std all": 3.0066592756745814,
+            "std complete": 12.547509713086498
+        },
+        "150": {
+            "Accuracy": 94.93333333333332,
+            "std all": 2.0483055327649633,
+            "std complete": 7.125540915139941
+        },
+        "200": {
+            "Accuracy": 97.0,
+            "std all": 0.6324555320336759,
+            "std complete": 5.0990195135927845
+        },
+        "250": {
+            "Accuracy": 98.32,
+            "std all": 0.9927738916792663,
+            "std complete": 3.4025872509018775
+        }
+    },
+    "GINE": {
+        "Accuracy": 98.56923076923077,
+        "std all": 0.896880780694819,
+        "std complete": 3.5145616123150702
+    }
+}

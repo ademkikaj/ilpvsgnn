@@ -1,0 +1,55 @@
+{
+    "dataset_name": "Bongard",
+    "dataset_type": "GraphKlog",
+    "num_reps": 5,
+    "layers": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "hidden_dims": [
+        32,
+        64,
+        128
+    ],
+    "max_num_epochs": 200,
+    "batch_size": 64,
+    "start_lr": 0.01,
+    "datasetSize": 392,
+    "positives": 151,
+    "negatives": 241,
+    "Size results GIN": {
+        "50": {
+            "Accuracy": 80.4,
+            "std all": 4.63033476111609,
+            "std complete": 21.721878371816743
+        },
+        "100": {
+            "Accuracy": 91.4,
+            "std all": 4.673328578219169,
+            "std complete": 10.95627673984187
+        },
+        "150": {
+            "Accuracy": 96.79999999999998,
+            "std all": 1.2927146286443527,
+            "std complete": 4.851574772976067
+        },
+        "200": {
+            "Accuracy": 97.2,
+            "std all": 1.0295630140987,
+            "std complete": 4.019950248448356
+        },
+        "250": {
+            "Accuracy": 95.84,
+            "std all": 1.0613199329137295,
+            "std complete": 5.654591055063133
+        }
+    },
+    "GIN": {
+        "Accuracy": 97.90256410256409,
+        "std all": 0.6137183638378152,
+        "std complete": 3.3046109678622075
+    }
+}
