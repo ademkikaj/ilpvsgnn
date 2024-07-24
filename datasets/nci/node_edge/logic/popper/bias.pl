@@ -1,0 +1,10 @@
+max_vars(10).
+max_body(8).
+head_pred(nci,1).
+body_pred(person,3).
+body_pred(parent,3).
+body_pred(same_gen,3).
+type(nci,(id,name,name)).
+type(parent,(id,name,name)).
+type(person,(id,node_id,name)).
+type(same_gen,(id,name,name)).

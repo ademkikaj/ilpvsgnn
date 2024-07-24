@@ -1,0 +1,16 @@
+max_vars(8).
+max_body(6).
+head_pred(cyclic,1).
+body_pred(edge,2).
+body_pred(node,2).
+body_pred(green,1).
+body_pred(red,1).
+type(cyclic,(id,)).
+type(edge,(id_int,id_int)).
+type(node,(id,color)).
+type(green,(color,)).
+type(red,(color,)).
+direction(edge,(in,out)).
+direction(node,(in,out)).
+direction(green,(out,)).
+direction(red,(out,)).

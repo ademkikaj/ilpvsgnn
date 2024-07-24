@@ -1,0 +1,181 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        5/13/2024 13:40:55
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : default (default) 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing,distribution] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : false (default) 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 0 (default) 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0 (default) 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(bongard(+A,-B)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(bongard(+A,-B)) 
+ *  root(bongard(A,B)) 
+ *  rmode(triangle(+A,+-B)) 
+ *  rmode(square(+A,+-B)) 
+ *  rmode(circle(+A,+-B)) 
+ *  rmode(edge(+A,+B,+-C)) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(bongard(pic,class)) 
+ *  type(triangle(pic,obj)) 
+ *  type(square(pic,obj)) 
+ *  type(circle(pic,obj)) 
+ *  type(edge(pic,obj,obj)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 0.32
+
+Model:
+    Complexity: 8.0 nodes, 12.0 literals
+    C4.5 error estimate: 11.8985578540266, relative: 0.038506659721769
+Training:
+    Number of examples: 309
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 101       0         | 101
+    neg       | 0         208       | 208
+    ----------------------------------------------
+              | 101       208       | 309
+
+    Accuracy: 1.0 (stderr: 0.0, default: 0.673139158576052)
+    Cramer's coefficient: 1.0
+    Class: pos: TP = 1.0, FP = 0.0
+Testing:
+    No examples available.
+
+
+Compact notation of tree:
+
+bongard(-A,-B)
+triangle(A,-C),edge(A,C,-D) ? 
++--yes: triangle(A,D) ? 
+|       +--yes: [pos] 62.0 [[pos:62.0,neg:0.0]]
+|       +--no:  circle(A,D) ? 
+|               +--yes: circle(A,-E),edge(A,E,-F) ? 
+|               |       +--yes: [neg] 5.0 [[pos:0.0,neg:5.0]]
+|               |       +--no:  [pos] 22.0 [[pos:22.0,neg:0.0]]
+|               +--no:  square(A,-G),edge(A,G,-H) ? 
+|                       +--yes: circle(A,H) ? 
+|                       |       +--yes: [pos] 7.0 [[pos:7.0,neg:0.0]]
+|                       |       +--no:  [neg] 16.0 [[pos:0.0,neg:16.0]]
+|                       +--no:  [neg] 31.0 [[pos:0.0,neg:31.0]]
++--no:  circle(A,-I),edge(A,I,-J) ? 
+        +--yes: [neg] 121.0 [[pos:0.0,neg:121.0]]
+        +--no:  circle(A,-K) ? 
+                +--yes: [pos] 10.0 [[pos:10.0,neg:0.0]]
+                +--no:  [neg] 35.0 [[pos:0.0,neg:35.0]]
+
+Equivalent prolog program:
+
+bongard(A,[pos]) :- triangle(A,B),edge(A,B,C),triangle(A,C), !.
+% 62.0/62.0=1.0
+bongard(A,[neg]) :- triangle(A,B),edge(A,B,C),circle(A,C),circle(A,D),edge(A,D,E), !.
+% 5.0/5.0=1.0
+bongard(A,[pos]) :- triangle(A,B),edge(A,B,C),circle(A,C), !.
+% 22.0/22.0=1.0
+bongard(A,[pos]) :- triangle(A,B),edge(A,B,C),square(A,D),edge(A,D,E),circle(A,E), !.
+% 7.0/7.0=1.0
+bongard(A,[neg]) :- triangle(A,B),edge(A,B,C),square(A,D),edge(A,D,E), !.
+% 16.0/16.0=1.0
+bongard(A,[neg]) :- triangle(A,B),edge(A,B,C), !.
+% 31.0/31.0=1.0
+bongard(A,[neg]) :- circle(A,B),edge(A,B,C), !.
+% 121.0/121.0=1.0
+bongard(A,[pos]) :- circle(A,B), !.
+% 10.0/10.0=1.0
+bongard(A,[neg]).
+% 35.0/35.0=1.0
+
+

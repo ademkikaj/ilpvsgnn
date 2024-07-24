@@ -1,0 +1,18 @@
+bongard(-A,-B)
+triangle(A,-C),edge(A,C,-D) ? 
++--yes: triangle(A,D) ? 
+|       +--yes: [pos] 62.0 [[pos:62.0,neg:0.0]]
+|       +--no:  circle(A,D) ? 
+|               +--yes: circle(A,-E),edge(A,E,-F) ? 
+|               |       +--yes: [neg] 5.0 [[pos:0.0,neg:5.0]]
+|               |       +--no:  [pos] 22.0 [[pos:22.0,neg:0.0]]
+|               +--no:  square(A,-G),edge(A,G,-H) ? 
+|                       +--yes: circle(A,H) ? 
+|                       |       +--yes: [pos] 7.0 [[pos:7.0,neg:0.0]]
+|                       |       +--no:  [neg] 16.0 [[pos:0.0,neg:16.0]]
+|                       +--no:  [neg] 31.0 [[pos:0.0,neg:31.0]]
++--no:  circle(A,-I),edge(A,I,-J) ? 
+        +--yes: [neg] 121.0 [[pos:0.0,neg:121.0]]
+        +--no:  circle(A,-K) ? 
+                +--yes: [pos] 10.0 [[pos:10.0,neg:0.0]]
+                +--no:  [neg] 35.0 [[pos:0.0,neg:35.0]]

@@ -1,0 +1,10 @@
+financial(-A,-B)
+trans(A,-C,-D,-E,-F,-G,-H),eq_trans_char(H,sankc_urok) ? 
++--yes: trans(A,-I,-J,-K,-L,-M,-N),eq_operation(K,vyber_kartou),eq_balance(M,a18=66077_4<x<=+inf) ? 
+|       +--yes: [neg] 2.0 [[pos:0.0,neg:2.0]]
+|       +--no:  order(A,-O,-P,-Q),eq_bank_to(O,ef),eq_amount(P,a16=3018_35<x<=4379_85) ? 
+|               +--yes: [neg] 3.0 [[pos:1.0,neg:2.0]]
+|               +--no:  [pos] 23.0 [[pos:22.0,neg:1.0]]
++--no:  card(A,-R,-S,-T),loan(A,-U,-V,-W,-X),eq_duration(W,a14=42<x<=54) ? 
+        +--yes: [neg] 2.0 [[pos:1.0,neg:1.0]]
+        +--no:  [neg] 157.0 [[pos:1.0,neg:156.0]]

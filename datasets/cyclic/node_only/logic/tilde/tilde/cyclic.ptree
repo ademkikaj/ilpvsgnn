@@ -1,0 +1,4 @@
+cyclic(-A,-B)
+node(A,-C),green(C) ? 
++--yes: [pos] 85.0 [[pos:45.0,neg:40.0]]
++--no:  [neg] 97.0 [[pos:46.0,neg:51.0]]

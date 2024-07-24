@@ -1,0 +1,223 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        4/19/2024 15:6:0
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : 50000 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing,distribution] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : false (default) 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 1 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0 (default) 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(financial(+A,-B)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(financial(+A,-B)) 
+ *  root(financial(A,B)) 
+ *  rmode(account(+A,+-B,-C,+-D)) 
+ *  rmode(card(+A,+-B,-C,+-D)) 
+ *  rmode(client(+A,+-B,+-C,+-D)) 
+ *  rmode(disp(+A,+-B,+-C,-D)) 
+ *  rmode(district(+A,-B,-C,-D,-E,-F,-G,-H,-I,-J,-K,-L,-M,-N,-O,-P)) 
+ *  rmode(loan(+A,+-B,-C,-D,-E)) 
+ *  rmode(order(+A,-B,-C,-D)) 
+ *  rmode(trans(+A,B,-C,-D,-E,-F,-G)) 
+ *  rmode(eq_amount(+A,#[a13=_inf<x<=38772,a13=155028<x<=+inf,a13=38772<x<=68952,a13=68952<x<=93288,a13=93288<x<=155028,a16=_inf<x<=1292,a16=1292<x<=3018_35,a16=3018_35<x<=4379_85,a16=4379_85<x<=6822_5,a16=6822_5<x<=+inf,a17=_inf<x<=132_25,a17=132_25<x<=1973,a17=13932_5<x<=+inf,a17=1973<x<=5613_6,a17=5613_6<x<=13932_5])) 
+ *  rmode(eq_avgsal(+A,#[a7=_inf<x<=8402_5,a7=8402_5<x<=8691_5,a7=8691_5<x<=8966_5,a7=8966_5<x<=9637,a7=9637<x<=+inf])) 
+ *  rmode(eq_balance(+A,#[a18=_inf<x<=25048_7,a18=25048_7<x<=35687_1,a18=35687_1<x<=47669_9,a18=47669_9<x<=66077_4,a18=66077_4<x<=+inf])) 
+ *  rmode(eq_bank_to(+A,#[ab,cd,ef,gh,ij,kl,mn,op,qr,st,uv,wx,yz])) 
+ *  rmode(eq_card_type(+A,#[classic,gold,junior])) 
+ *  rmode(eq_cities(+A,#[a5=_inf<x<=4_5,a5=4_5<x<=5_5,a5=5_5<x<=6_5,a5=6_5<x<=8_5,a5=8_5<x<=+inf])) 
+ *  rmode(eq_crimes95(+A,#[a11=_inf<x<=1847_5,a11=1847_5<x<=2646_5,a11=2646_5<x<=3694,a11=3694<x<=5089,a11=5089<x<=+inf])) 
+ *  rmode(eq_crimes96(+A,#[a12=_inf<x<=1906_5,a12=1906_5<x<=2758_5,a12=2758_5<x<=3635_5,a12=3635_5<x<=5024_5,a12=5024_5<x<=+inf])) 
+ *  rmode(eq_disp_type(+A,#[disponent,owner])) 
+ *  rmode(eq_district_name(+A,#[benesov,beroun,blansko,breclav,brno_mesto,brno_venkov,bruntal,ceska_lipa,ceske_budejovice,cesky_krumlov,cheb,chomutov,chrudim,decin,frydek_mistek,havlickuv_brod,hl_m_praha,hodonin,hradec_kralove,jablonec_n_nisou,jesenik,jicin,jindrichuv_hradec,karlovy_vary,karvina,kladno,kolin,kromeriz,kutna_hora,litomerice,louny,melnik,most,nachod,novy_jicin,nymburk,olomouc,opava,ostrava_mesto,pardubice,pelhrimov,pisek,plzen_jih,plzen_mesto,plzen_sever,prachatice,praha_vychod,praha_zapad,prerov,pribram,prostejov,rakovnik,rokycany,rychnov_nad_kneznou,semily,sokolov,strakonice,sumperk,svitavy,tabor,tachov,teplice,trebic,trutnov,uherske_hradiste,usti_nad_labem,usti_nad_orlici,vsetin,vyskov,zdar_nad_sazavou,zlin,znojmo])) 
+ *  rmode(eq_duration(+A,#[a14=_inf<x<=18,a14=18<x<=30,a14=30<x<=42,a14=42<x<=54,a14=54<x<=+inf])) 
+ *  rmode(eq_enterpreneurs(+A,#[a10=_inf<x<=101,a10=101<x<=109_5,a10=109_5<x<=118_5,a10=118_5<x<=130_5,a10=130_5<x<=+inf])) 
+ *  rmode(eq_frequency(+A,#[poplatek_mesicne,poplatek_po_obratu,poplatek_tydne])) 
+ *  rmode(eq_inhabitants(+A,#[a0=_inf<x<=76801,a0=119272<x<=159134,a0=159134<x<=+inf,a0=76801<x<=99258,a0=99258<x<=119272])) 
+ *  rmode(eq_mun1(+A,#[a1=_inf<x<=16,a1=16<x<=34_5,a1=34_5<x<=57,a1=57<x<=74_5,a1=74_5<x<=+inf])) 
+ *  rmode(eq_mun2(+A,#[a2=_inf<x<=13_5,a2=13_5<x<=21_5,a2=21_5<x<=27_5,a2=27_5<x<=35_5,a2=35_5<x<=+inf])) 
+ *  rmode(eq_mun3(+A,#[a3=_inf<x<=3_5,a3=3_5<x<=4_5,a3=4_5<x<=6_5,a3=6_5<x<=9_5,a3=9_5<x<=+inf])) 
+ *  rmode(eq_mun4(+A,#[a4=_inf<x<=0_5,a4=0_5<x<=1_5,a4=1_5<x<=2_5,a4=2_5<x<=3_5,a4=3_5<x<=+inf])) 
+ *  rmode(eq_operation(+A,#[prevod_na_ucet,prevod_z_uctu,vklad,vyber,vyber_kartou,none])) 
+ *  rmode(eq_payments(+A,#[a15=_inf<x<=2163,a15=2163<x<=3537_5,a15=3537_5<x<=4974_5,a15=4974_5<x<=6717,a15=6717<x<=+inf])) 
+ *  rmode(eq_ratio(+A,#[a6=_inf<x<=49_45,a6=49_45<x<=56,a6=56<x<=62_45,a6=62_45<x<=80_25,a6=80_25<x<=+inf])) 
+ *  rmode(eq_region(+A,#[prague,central_bohemia,east_bohemia,north_bohemia,north_moravia,south_bohemia,south_moravia,west_bohemia])) 
+ *  rmode(eq_symbol(+A,#[pojistne,sipo,uver,none])) 
+ *  rmode(eq_trans_char(+A,#[pojistne,sankc_urok,sipo,sluzby,urok,uver,none])) 
+ *  rmode(eq_trans_type(+A,#[prijem,vyber,vydaj])) 
+ *  rmode(eq_unemploy95(+A,#[a8=_inf<x<=1_645,a8=1_645<x<=2_585,a8=2_585<x<=3_355,a8=3_355<x<=4_71,a8=4_71<x<=+inf])) 
+ *  rmode(eq_unemploy96(+A,#[a9=_inf<x<=2_14,a9=2_14<x<=3_24,a9=3_24<x<=4_07,a9=4_07<x<=5_505,a9=5_505<x<=+inf])) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(account(key,district_id,frequency,date)) 
+ *  type(card(key,disp_id,card_type,date)) 
+ *  type(client(key,client_id,birth,district_id)) 
+ *  type(disp(key,disp_id,client_id,disp_type)) 
+ *  type(district(district_id,district_name,region,inhabitants,mun1,mun2,mun3,mun4,cities,ratio,avgsal,unemploy95,unemploy96,enterpreneurs,crimes95,crimes96)) 
+ *  type(loan(key,date,amount,duration,payments)) 
+ *  type(order(key,bank_to,amount,symbol)) 
+ *  type(trans(key,date,trans_type,operation,amount,balance,trans_char)) 
+ *  type(eq_amount(amount,amount)) 
+ *  type(eq_avgsal(avgsal,avgsal)) 
+ *  type(eq_balance(balance,balance)) 
+ *  type(eq_bank_to(bank_to,bank_to)) 
+ *  type(eq_card_type(card_type,card_type)) 
+ *  type(eq_cities(cities,cities)) 
+ *  type(eq_crimes95(crimes95,crimes95)) 
+ *  type(eq_crimes96(crimes96,crimes96)) 
+ *  type(eq_disp_type(disp_type,disp_type)) 
+ *  type(eq_district_name(district_name,district_name)) 
+ *  type(eq_duration(duration,duration)) 
+ *  type(eq_enterpreneurs(enterpreneurs,enterpreneurs)) 
+ *  type(eq_frequency(frequency,frequency)) 
+ *  type(eq_inhabitants(inhabitants,inhabitants)) 
+ *  type(eq_mun1(mun1,mun1)) 
+ *  type(eq_mun2(mun2,mun2)) 
+ *  type(eq_mun3(mun3,mun3)) 
+ *  type(eq_mun4(mun4,mun4)) 
+ *  type(eq_operation(operation,operation)) 
+ *  type(eq_payments(payments,payments)) 
+ *  type(eq_ratio(ratio,ratio)) 
+ *  type(eq_region(region,region)) 
+ *  type(eq_symbol(symbol,symbol)) 
+ *  type(eq_trans_char(trans_char,trans_char)) 
+ *  type(eq_trans_type(trans_type,trans_type)) 
+ *  type(eq_unemploy95(unemploy95,unemploy95)) 
+ *  type(eq_unemploy96(unemploy96,unemploy96)) 
+ *  type(financial(A,B)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 2192.74
+
+Model:
+    Complexity: 3.0 nodes, 8.0 literals
+    C4.5 error estimate: 9.43864841102474, relative: 0.0504740556739291
+Training:
+    Number of examples: 187
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 22        3         | 25
+    neg       | 1         161       | 162
+    ----------------------------------------------
+              | 23        164       | 187
+
+    Accuracy: 0.978609625668449 (stderr: 0.0105801818109352, default: 0.866310160427808)
+    Cramer's coefficient: 0.905455704093359
+    Class: pos: TP = 0.88, FP = 0.00617283950617284
+Testing:
+    No examples available.
+
+
+Compact notation of tree:
+
+financial(-A,-B)
+trans(A,-C,-D,-E,-F,-G,-H),eq_trans_char(H,sankc_urok) ? 
++--yes: trans(A,-I,-J,-K,-L,-M,-N),eq_operation(K,vyber_kartou),eq_balance(M,a18=66077_4<x<=+inf) ? 
+|       +--yes: [neg] 2.0 [[pos:0.0,neg:2.0]]
+|       +--no:  order(A,-O,-P,-Q),eq_bank_to(O,ef),eq_amount(P,a16=3018_35<x<=4379_85) ? 
+|               +--yes: [neg] 3.0 [[pos:1.0,neg:2.0]]
+|               +--no:  [pos] 23.0 [[pos:22.0,neg:1.0]]
++--no:  [neg] 159.0 [[pos:2.0,neg:157.0]]
+
+Equivalent prolog program:
+
+financial(A,[neg]) :- trans(A,B,C,D,E,F,G),eq_trans_char(G,sankc_urok),trans(A,H,I,J,K,L,M),eq_operation(J,vyber_kartou),eq_balance(L,a18=66077_4<x<=+inf), !.
+% 2.0/2.0=1.0
+financial(A,[neg]) :- trans(A,B,C,D,E,F,G),eq_trans_char(G,sankc_urok),order(A,H,I,J),eq_bank_to(H,ef),eq_amount(I,a16=3018_35<x<=4379_85), !.
+% 2.0/3.0=0.666666666666667
+financial(A,[pos]) :- trans(A,B,C,D,E,F,G),eq_trans_char(G,sankc_urok), !.
+% 22.0/23.0=0.956521739130435
+financial(A,[neg]).
+% 157.0/159.0=0.987421383647799
+
+

@@ -1,0 +1,12 @@
+max_vars(10).
+max_body(8).
+head_pred(mutag,1).
+body_pred(bond,4).
+body_pred(atom,4).
+body_pred(nitro,3).
+body_pred(benzene,3).
+type(mutag,(id,)).
+type(bond,(id,node_id,node_id,bond_type)).
+type(atom,(id,node_id,atom_type,charge)).
+type(nitro,(id,node_id,node_id)).
+type(benzene,(id,node_id,node_id)).

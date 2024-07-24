@@ -1,0 +1,32 @@
+mutag(-A,-B)
+benzene(A,-C,-D) ? 
++--yes: nitro(A,-E,-F),benzene(A,E,D) ? 
+|       +--yes: nitro(A,-G,-H),benzene(A,H,-I) ? 
+|       |       +--yes: benzene(A,H,D) ? 
+|       |       |       +--yes: [pos] 11.0 [[pos:7.0,neg:4.0]]
+|       |       |       +--no:  benzene(A,D,H) ? 
+|       |       |               +--yes: [pos] 5.0 [[pos:3.0,neg:2.0]]
+|       |       |               +--no:  [neg] 4.0 [[pos:1.0,neg:3.0]]
+|       |       +--no:  [pos] 19.0 [[pos:13.0,neg:6.0]]
+|       +--no:  nitro(A,-J,-K),benzene(A,D,K) ? 
+|               +--yes: benzene(A,-L,C) ? 
+|               |       +--yes: benzene(A,-M,L) ? 
+|               |       |       +--yes: benzene(A,-N,M) ? 
+|               |       |       |       +--yes: benzene(A,N,D) ? 
+|               |       |       |       |       +--yes: [pos] 2.0 [[pos:2.0,neg:0.0]]
+|               |       |       |       |       +--no:  benzene(A,-O,N),benzene(A,O,D) ? 
+|               |       |       |       |               +--yes: [neg] 6.0 [[pos:3.0,neg:3.0]]
+|               |       |       |       |               +--no:  nitro(A,-P,-Q),benzene(A,Q,M) ? 
+|               |       |       |       |                       +--yes: [pos] 2.0 [[pos:2.0,neg:0.0]]
+|               |       |       |       |                       +--no:  benzene(A,K,N) ? 
+|               |       |       |       |                               +--yes: nitro(A,-R,-S),benzene(A,S,L) ? 
+|               |       |       |       |                               |       +--yes: [pos] 10.0 [[pos:8.0,neg:2.0]]
+|               |       |       |       |                               |       +--no:  [pos] 71.0 [[pos:48.0,neg:23.0]]
+|               |       |       |       |                               +--no:  benzene(A,M,-T),benzene(A,K,T) ? 
+|               |       |       |       |                                       +--yes: [pos] 4.0 [[pos:3.0,neg:1.0]]
+|               |       |       |       |                                       +--no:  [pos] 21.0 [[pos:11.0,neg:10.0]]
+|               |       |       |       +--no:  [pos] 2.0 [[pos:2.0,neg:0.0]]
+|               |       |       +--no:  [neg] 2.0 [[pos:1.0,neg:1.0]]
+|               |       +--no:  [pos] 3.0 [[pos:3.0,neg:0.0]]
+|               +--no:  [pos] 7.0 [[pos:5.0,neg:2.0]]
++--no:  [pos] 2.0 [[pos:2.0,neg:0.0]]

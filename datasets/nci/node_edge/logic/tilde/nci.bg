@@ -1,0 +1,6 @@
+eq_atom(A,B) :- A == B.
+eq_bond(A,B) :- A == B.
+
+
+four_cycle(Id,A,B,C,D):- atom(Id,A,_),atom(Id,B,_),atom(Id,C,_),atom(Id,D,_),bond(Id,A,B,_),bond(Id,B,C,_),bond(Id,C,D,_),bond(Id,D,A,_).
+

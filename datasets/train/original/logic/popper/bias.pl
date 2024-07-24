@@ -1,0 +1,15 @@
+head_pred(train,1).
+body_pred(has_car,2).
+body_pred(has_load,3).
+body_pred(short,2).
+body_pred(long,2).
+body_pred(two_wheels,2).
+body_pred(three_wheels,2).
+body_pred(roof_open,2).
+body_pred(roof_closed,2).
+body_pred(zero_load,2).
+body_pred(one_load,2).
+body_pred(two_load,2).
+body_pred(three_load,2).
+body_pred(circle,2).
+body_pred(triangle,2).
