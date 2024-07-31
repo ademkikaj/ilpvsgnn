@@ -23,8 +23,7 @@ class Run:
                  ilp_settings,
                  base_folder = "Benchmark",
                  result_id = None,
-                 split_data = True
-                 ):
+                 split_data = True):
         
         self.dataset_name = dataset_name
         self.representations = representations
@@ -86,7 +85,7 @@ class Run:
         
     def create_folders(self):
         parent_dir = os.path.dirname(os.path.abspath(__file__))
-        self.base_path = os.path.join("docker",self.base_folder,self.dataset_name)
+        self.base_path = os.path.join(self.base_folder,self.dataset_name)
 
         # create representation folders
         for repr in self.representations:
