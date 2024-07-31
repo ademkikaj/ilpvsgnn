@@ -1,0 +1,3 @@
+datasets/financial/node_only/graph/test.pt
+datasets/cancer/node_only/graph/train.pt
+datasets/cancer/node_only/graph/test.pt
