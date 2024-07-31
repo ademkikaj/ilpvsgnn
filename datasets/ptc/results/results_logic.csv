@@ -1,0 +1,2 @@
+test_acc,runtime,train_acc,system,representation
+0.5616438356164384,600.0394096250001,0.0,Aleph,node_edge

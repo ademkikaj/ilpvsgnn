@@ -1,0 +1,22 @@
+cyclic(-A,-B)
+edge(A,-C) ? 
++--yes: edge(C,-D),edge(D,-E) ? 
+|       +--yes: edge(E,-F),edge(F,-G) ? 
+|       |       +--yes: edge(G,-H),edge(H,-I) ? 
+|       |       |       +--yes: node(H,-J),node(A,J) ? 
+|       |       |       |       +--yes: edge(I,-K),edge(K,-L) ? 
+|       |       |       |       |       +--yes: node(K,-M),node(D,M) ? 
+|       |       |       |       |       |       +--yes: node(F,-N),green(N) ? 
+|       |       |       |       |       |       |       +--yes: [pos] 58.0 [[pos:58.0,neg:0.0]]
+|       |       |       |       |       |       |       +--no:  node(F,J) ? 
+|       |       |       |       |       |       |               +--yes: [pos] 17.0 [[pos:17.0,neg:0.0]]
+|       |       |       |       |       |       |               +--no:  edge(L,-O),node(O,J) ? 
+|       |       |       |       |       |       |                       +--yes: [pos] 9.0 [[pos:8.0,neg:1.0]]
+|       |       |       |       |       |       |                       +--no:  [pos] 10.0 [[pos:8.0,neg:2.0]]
+|       |       |       |       |       |       +--no:  [neg] 2.0 [[pos:0.0,neg:2.0]]
+|       |       |       |       |       +--no:  [neg] 4.0 [[pos:0.0,neg:4.0]]
+|       |       |       |       +--no:  [neg] 8.0 [[pos:0.0,neg:8.0]]
+|       |       |       +--no:  [neg] 7.0 [[pos:0.0,neg:7.0]]
+|       |       +--no:  [neg] 11.0 [[pos:0.0,neg:11.0]]
+|       +--no:  [neg] 22.0 [[pos:0.0,neg:22.0]]
++--no:  [neg] 34.0 [[pos:0.0,neg:34.0]]

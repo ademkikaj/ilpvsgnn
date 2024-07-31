@@ -1,0 +1,198 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        3/23/2024 8:13:47
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : default (default) 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing,distribution] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : false (default) 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 0 (default) 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0 (default) 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(sameGen(+A,+B,-C)) 
+ *  warmode(same_gen(+A,-B)) 
+ *  warmode(person(+A)) 
+ *  warmode(parent(+A,-B)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(sameGen(+A,+B,-C)) 
+ *  root(sameGen(A,B,C)) 
+ *  rmode(inf:same_gen(+A,-B)) 
+ *  rmode(inf:person(+A)) 
+ *  rmode(inf:parent(+A,-B)) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(same_gen(A,B)) 
+ *  type(person(A)) 
+ *  type(parent(A,B)) 
+ *  type(sameGen(A,B,C)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 0.18
+
+Model:
+    Complexity: 12.0 nodes, 12.0 literals
+    C4.5 error estimate: 22.3197707316553, relative: 0.111598853658277
+Training:
+    Number of examples: 200
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 100       0         | 100
+    neg       | 5         95        | 100
+    ----------------------------------------------
+              | 105       95        | 200
+
+    Accuracy: 0.975 (stderr: 0.0110397010829098, default: 0.5)
+    Cramer's coefficient: 0.951189731211342
+    Class: pos: TP = 1.0, FP = 0.05
+Testing:
+    No examples available.
+
+
+Compact notation of tree:
+
+sameGen(-A,-B,-C)
+same_gen(B,-D) ? 
++--yes: same_gen(A,-E) ? 
+|       +--yes: parent(A,-F) ? 
+|       |       +--yes: parent(D,-G) ? 
+|       |       |       +--yes: parent(B,-H) ? 
+|       |       |       |       +--yes: parent(F,-I) ? 
+|       |       |       |       |       +--yes: parent(G,-J) ? 
+|       |       |       |       |       |       +--yes: [pos] 10.0 [[pos:10.0,neg:0.0]]
+|       |       |       |       |       |       +--no:  [neg] 5.0 [[pos:0.0,neg:5.0]]
+|       |       |       |       |       +--no:  [pos] 18.0 [[pos:15.0,neg:3.0]]
+|       |       |       |       +--no:  [pos] 7.0 [[pos:7.0,neg:0.0]]
+|       |       |       +--no:  [neg] 13.0 [[pos:0.0,neg:13.0]]
+|       |       +--no:  parent(B,-K) ? 
+|       |               +--yes: parent(E,-L) ? 
+|       |               |       +--yes: parent(K,-M) ? 
+|       |               |       |       +--yes: [neg] 2.0 [[pos:0.0,neg:2.0]]
+|       |               |       |       +--no:  [pos] 19.0 [[pos:18.0,neg:1.0]]
+|       |               |       +--no:  [neg] 5.0 [[pos:0.0,neg:5.0]]
+|       |               +--no:  parent(E,-N) ? 
+|       |                       +--yes: parent(D,-O) ? 
+|       |                       |       +--yes: [pos] 12.0 [[pos:12.0,neg:0.0]]
+|       |                       |       +--no:  [neg] 3.0 [[pos:0.0,neg:3.0]]
+|       |                       +--no:  [pos] 39.0 [[pos:38.0,neg:1.0]]
+|       +--no:  [neg] 28.0 [[pos:0.0,neg:28.0]]
++--no:  [neg] 39.0 [[pos:0.0,neg:39.0]]
+
+Equivalent prolog program:
+
+sameGen(A,B,[pos]) :- same_gen(B,C),same_gen(A,D),parent(A,E),parent(C,F),parent(B,G),parent(E,H),parent(F,I), !.
+% 10.0/10.0=1.0
+sameGen(A,B,[neg]) :- same_gen(B,C),same_gen(A,D),parent(A,E),parent(C,F),parent(B,G),parent(E,H), !.
+% 5.0/5.0=1.0
+sameGen(A,B,[pos]) :- same_gen(B,C),same_gen(A,D),parent(A,E),parent(C,F),parent(B,G), !.
+% 15.0/18.0=0.833333333333333
+sameGen(A,B,[pos]) :- same_gen(B,C),same_gen(A,D),parent(A,E),parent(C,F), !.
+% 7.0/7.0=1.0
+sameGen(A,B,[neg]) :- same_gen(B,C),same_gen(A,D),parent(A,E), !.
+% 13.0/13.0=1.0
+sameGen(A,B,[neg]) :- same_gen(B,C),same_gen(A,D),parent(B,E),parent(D,F),parent(E,G), !.
+% 2.0/2.0=1.0
+sameGen(A,B,[pos]) :- same_gen(B,C),same_gen(A,D),parent(B,E),parent(D,F), !.
+% 18.0/19.0=0.947368421052632
+sameGen(A,B,[neg]) :- same_gen(B,C),same_gen(A,D),parent(B,E), !.
+% 5.0/5.0=1.0
+sameGen(A,B,[pos]) :- same_gen(B,C),same_gen(A,D),parent(D,E),parent(C,F), !.
+% 12.0/12.0=1.0
+sameGen(A,B,[neg]) :- same_gen(B,C),same_gen(A,D),parent(D,E), !.
+% 3.0/3.0=1.0
+sameGen(A,B,[pos]) :- same_gen(B,C),same_gen(A,D), !.
+% 38.0/39.0=0.974358974358974
+sameGen(A,B,[neg]) :- same_gen(B,C), !.
+% 28.0/28.0=1.0
+sameGen(A,B,[neg]).
+% 39.0/39.0=1.0
+
+

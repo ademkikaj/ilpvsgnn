@@ -1,0 +1,8 @@
+train(-A,-B)
+three_wheels(A,-C) ? 
++--yes: roof_closed(A,-D) ? 
+|       +--yes: long(A,D) ? 
+|       |       +--yes: [pos] 158.0 [[pos:158.0,neg:0.0]]
+|       |       +--no:  [neg] 25.0 [[pos:0.0,neg:25.0]]
+|       +--no:  [neg] 21.0 [[pos:0.0,neg:21.0]]
++--no:  [neg] 112.0 [[pos:0.0,neg:112.0]]

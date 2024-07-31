@@ -1,0 +1,12 @@
+max_vars(8).
+max_body(6).
+head_pred(krk,1).
+body_pred(white_king,4).
+body_pred(white_rook,4).
+body_pred(black_king,4).
+body_pred(edge,3).
+type(krk,(id,)).
+type(white_king,(id,node_id,x,y)).
+type(white_rook,(id,node_id,x,y)).
+type(black_king,(id,node_id,x,y)).
+type(edge,(id,node_id,node_id)).

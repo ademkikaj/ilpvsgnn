@@ -1,0 +1,164 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        3/26/2024 11:7:34
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : default (default) 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : is_test_model 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 0 (default) 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0.5 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(krk(+id,-class)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(krk(+A,-B)) 
+ *  root(krk(A,B)) 
+ *  rmode(5:king(+-piece)) 
+ *  rmode(5:rook(+-piece)) 
+ *  rmode(5:white(+-color)) 
+ *  rmode(5:black(+-color)) 
+ *  rmode(5:cell(+id,(+-x,+-y),+-color,+-piecetype)) 
+ *  rmode(5:one(-integer)) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(krk(id,class)) 
+ *  type(king(piece)) 
+ *  type(rook(piece)) 
+ *  type(white(color)) 
+ *  type(black(color)) 
+ *  type(distance((int,int),(int,int),integer)) 
+ *  type(cell(id,(int,int),color,piecetype)) 
+ *  type(one(int)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 0.01
+
+Model:
+    Complexity: 0.0 nodes, 0.0 literals
+    C4.5 error estimate: 22.8224770388398, relative: 0.507166156418663
+Training:
+    Number of examples: 45
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 0         20        | 20
+    neg       | 0         25        | 25
+    ----------------------------------------------
+              | 0         45        | 45
+
+    Accuracy: 0.555555555555556 (stderr: 0.0740740740740741, default: 0.555555555555556)
+    Cramer's coefficient: 0.0
+    Class: pos: TP = 0.0, FP = 0.0
+Testing:
+    Number of examples: 45
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 0         24        | 24
+    neg       | 0         21        | 21
+    ----------------------------------------------
+              | 0         45        | 45
+
+    Accuracy: 0.466666666666667 (stderr: 0.0743697801363623, default: 0.533333333333333)
+    Cramer's coefficient: 0.0
+    Class: pos: TP = 0.0, FP = 0.0
+
+
+Compact notation of tree:
+
+[neg] 45.0 [[pos:20.0,neg:25.0]]
+
+Equivalent prolog program:
+
+krk(A,[neg]).
+% 25.0/45.0=0.555555555555556
+
+

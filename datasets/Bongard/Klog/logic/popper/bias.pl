@@ -1,0 +1,14 @@
+max_vars(8).
+max_body(6).
+head_pred(bongard,1).
+body_pred(square,2).
+body_pred(circle,2).
+body_pred(triangle,2).
+body_pred(edge,3).
+body_pred(in,2).
+type(bongard,(id,)).
+type(square,(id,object)).
+type(circle,(id,object)).
+type(triangle,(id,object)).
+type(in,(id,object)).
+type(edge,(id,object,object)).

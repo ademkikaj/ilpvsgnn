@@ -1,0 +1,31 @@
+:- style_check(-singleton).
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B):- same_gen(A,B), !.
+sameGen(A,B,C,neg).

@@ -1,0 +1,198 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        5/1/2024 14:27:21
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : default (default) 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing,distribution] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : false (default) 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 0 (default) 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0 (default) 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(train(+A,-B)) 
+ *  warmode(has_car(+id,+-car_id)) 
+ *  warmode(has_load(+id,+-load_id)) 
+ *  warmode(short(+id,+-car_id)) 
+ *  warmode(long(+id,+-car_id)) 
+ *  warmode(two_wheels(+id,+-car_id)) 
+ *  warmode(three_wheels(+id,+-car_id)) 
+ *  warmode(roof_open(+id,+-car_id)) 
+ *  warmode(roof_closed(+id,+-car_id)) 
+ *  warmode(zero_load(+id,+-load_id)) 
+ *  warmode(one_load(+id,+-load_id)) 
+ *  warmode(two_load(+id,+-load_id)) 
+ *  warmode(three_load(+id,+-load_id)) 
+ *  warmode(circle(+id,+-load_id)) 
+ *  warmode(triangle(+id,+-load_id)) 
+ *  warmode(edge(+id,+-object,+-object)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(train(+A,-B)) 
+ *  root(train(A,B)) 
+ *  rmode(inf:has_car(+A,+-B)) 
+ *  rmode(inf:has_load(+A,+-B)) 
+ *  rmode(inf:short(+A,+-B)) 
+ *  rmode(inf:long(+A,+-B)) 
+ *  rmode(inf:two_wheels(+A,+-B)) 
+ *  rmode(inf:three_wheels(+A,+-B)) 
+ *  rmode(inf:roof_open(+A,+-B)) 
+ *  rmode(inf:roof_closed(+A,+-B)) 
+ *  rmode(inf:zero_load(+A,+-B)) 
+ *  rmode(inf:one_load(+A,+-B)) 
+ *  rmode(inf:two_load(+A,+-B)) 
+ *  rmode(inf:three_load(+A,+-B)) 
+ *  rmode(inf:circle(+A,+-B)) 
+ *  rmode(inf:triangle(+A,+-B)) 
+ *  rmode(inf:edge(+A,+-B,+-C)) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(has_car(id,car_id)) 
+ *  type(has_load(id,load_id)) 
+ *  type(short(id,car_id)) 
+ *  type(long(id,car_id)) 
+ *  type(two_wheels(id,car_id)) 
+ *  type(three_wheels(id,car_id)) 
+ *  type(roof_open(id,car_id)) 
+ *  type(roof_closed(id,car_id)) 
+ *  type(zero_load(id,load_id)) 
+ *  type(one_load(id,load_id)) 
+ *  type(two_load(id,load_id)) 
+ *  type(three_load(id,load_id)) 
+ *  type(circle(id,load_id)) 
+ *  type(triangle(id,load_id)) 
+ *  type(edge(id,object,object)) 
+ *  type(train(A,B)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 0.06
+
+Model:
+    Complexity: 3.0 nodes, 3.0 literals
+    C4.5 error estimate: 5.44806679749181, relative: 0.0172407177135817
+Training:
+    Number of examples: 316
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 158       0         | 158
+    neg       | 0         158       | 158
+    ----------------------------------------------
+              | 158       158       | 316
+
+    Accuracy: 1.0 (stderr: 0.0, default: 0.5)
+    Cramer's coefficient: 1.0
+    Class: pos: TP = 1.0, FP = 0.0
+Testing:
+    No examples available.
+
+
+Compact notation of tree:
+
+train(-A,-B)
+three_wheels(A,-C) ? 
++--yes: roof_closed(A,-D) ? 
+|       +--yes: long(A,D) ? 
+|       |       +--yes: [pos] 158.0 [[pos:158.0,neg:0.0]]
+|       |       +--no:  [neg] 25.0 [[pos:0.0,neg:25.0]]
+|       +--no:  [neg] 21.0 [[pos:0.0,neg:21.0]]
++--no:  [neg] 112.0 [[pos:0.0,neg:112.0]]
+
+Equivalent prolog program:
+
+train(A,[pos]) :- three_wheels(A,B),roof_closed(A,C),long(A,C), !.
+% 158.0/158.0=1.0
+train(A,[neg]) :- three_wheels(A,B),roof_closed(A,C), !.
+% 25.0/25.0=1.0
+train(A,[neg]) :- three_wheels(A,B), !.
+% 21.0/21.0=1.0
+train(A,[neg]).
+% 112.0/112.0=1.0
+
+

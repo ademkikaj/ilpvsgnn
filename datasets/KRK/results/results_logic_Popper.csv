@@ -1,0 +1,5 @@
+test_acc,runtime,train_acc,system,representation
+0.0,254.64342713356015,0.0,Popper,node_only
+0.0,105.5318489074707,0.0,Popper,node_edge
+0.5476190476190477,101.32256484031676,0.65,Popper,edge_based
+0.0,105.79486322402954,0.0,Popper,Klog

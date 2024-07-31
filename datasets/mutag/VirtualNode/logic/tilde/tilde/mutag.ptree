@@ -1,0 +1,10 @@
+mutag(-A,-B)
+fourth(A,-C,-D) ? 
++--yes: [pos] 2.0 [[pos:2.0,neg:0.0]]
++--no:  cl(A,-E) ? 
+        +--yes: [pos] 7.0 [[pos:6.0,neg:1.0]]
+        +--no:  f(A,-F) ? 
+                +--yes: [pos] 6.0 [[pos:5.0,neg:1.0]]
+                +--no:  br(A,-G) ? 
+                        +--yes: [neg] 2.0 [[pos:1.0,neg:1.0]]
+                        +--no:  [pos] 133.0 [[pos:86.0,neg:47.0]]

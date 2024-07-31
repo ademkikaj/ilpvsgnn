@@ -1,0 +1,4 @@
+test_acc,runtime,train_acc,system,representation
+1.0,2.345329761505127,1.0,Tilde,node_edge
+1.0,2.657137155532837,1.0,Tilde,edge_based
+0.6746987951807228,2.184248924255371,0.673139158576052,Tilde,Klog

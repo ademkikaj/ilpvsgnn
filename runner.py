@@ -21,7 +21,7 @@ class Run:
                  GraphConverter,
                  LogicConverter,
                  ilp_settings,
-                 base_folder = "Benchmark",
+                 base_folder = "datasets",
                  result_id = None,
                  split_data = True):
         
@@ -1520,8 +1520,8 @@ if __name__ == "__main__":
     }
     
     runner = Run(dataset_name,representations,target,problem_id,toGraph,toLogic,ilp_settings[dataset_name])
-    runner.TILDE = True
+    runner.TILDE = False
     runner.ALEPH = True
-    runner.POPPER = True
+    runner.POPPER = False
     runner.GNN = False
     runner.run()

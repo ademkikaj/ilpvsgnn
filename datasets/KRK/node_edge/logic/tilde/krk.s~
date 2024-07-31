@@ -1,0 +1,21 @@
+output_options([c45,c45c,c45e,lp,prolog]).
+use_packs(ilp).
+predict(krk(+B,-C)).
+rmode(5: white_king(+P,+-S,-X,-Y)).
+rmode(5: white_rook(+P,+-S,-X,-Y)).
+rmode(5: black_king(+P,+-S,-X,-Y)).
+rmode(5: edge(+P,+S1,-S2)).
+rmode(5: same_rank(+P,+S1,-S2)).
+rmode(5: same_file(+P,+S1,-S2)).
+typed_language(yes).
+type(krk(id,class)).
+type(white_king(id,node_id,x,y)).
+type(white_rook(id,node_id,x,y)).
+type(black_king(id,node_id,x,y)).
+type(edge(id,node_id,node_id)).
+type(same_rank(id,node_id,node_id)).
+type(same_file(id,node_id,node_id)).
+write_predictions([testing, distribution]).
+combination_rule([product, sum]).
+execute(t).
+execute(q).

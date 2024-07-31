@@ -1,0 +1,14 @@
+cyclic(-A,-B)
+edge(A,-C),instance(C) ? 
++--yes: instance(A) ? 
+|       +--yes: edge(C,-D),instance(D) ? 
+|       |       +--yes: edge(D,-E),instance(E) ? 
+|       |       |       +--yes: edge(E,-F),instance(F) ? 
+|       |       |       |       +--yes: edge(F,-G),instance(G) ? 
+|       |       |       |       |       +--yes: [pos] 66.0 [[pos:59.0,neg:7.0]]
+|       |       |       |       |       +--no:  [neg] 3.0 [[pos:1.0,neg:2.0]]
+|       |       |       |       +--no:  [neg] 5.0 [[pos:2.0,neg:3.0]]
+|       |       |       +--no:  [neg] 15.0 [[pos:7.0,neg:8.0]]
+|       |       +--no:  [neg] 24.0 [[pos:10.0,neg:14.0]]
+|       +--no:  [neg] 24.0 [[pos:9.0,neg:15.0]]
++--no:  [neg] 45.0 [[pos:3.0,neg:42.0]]

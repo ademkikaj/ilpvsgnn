@@ -1,0 +1,10 @@
+head_pred(university,1).
+body_pred(course,3).
+body_pred(professor,3).
+body_pred(registered,5).
+body_pred(ra,5).
+type(university,(id,)).
+type(course,(id,diff,rating)).
+type(professor,(prof_id,teaching,pop)).
+type(registered,(student_id,course_id,grade,satis)).
+type(ra,(student_id,prof_id,sal,cap)).

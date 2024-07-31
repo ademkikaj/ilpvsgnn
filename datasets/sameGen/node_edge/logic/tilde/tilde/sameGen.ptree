@@ -1,0 +1,4 @@
+sameGen(-A,-B,-C,-D)
+same_gen(A,-E,-F) ? 
++--yes: [pos] 150.0 [[pos:79.0,neg:71.0]]
++--no:  [neg] 8.0 [[pos:0.0,neg:8.0]]

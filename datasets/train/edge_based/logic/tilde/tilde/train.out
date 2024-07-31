@@ -1,0 +1,197 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        5/1/2024 14:22:36
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : default (default) 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing,distribution] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : false (default) 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 0 (default) 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0 (default) 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(train(+A,-B)) 
+ *  warmode(has_car(+id,+-node_id,+-node_id)) 
+ *  warmode(has_load(+id,+-node_id,+-node_id)) 
+ *  warmode(edge(+id,+-node_id,+-object)) 
+ *  warmode(instance(+id,+-node_id)) 
+ *  warmode(train(+object)) 
+ *  warmode(car(+object)) 
+ *  warmode(load(+object)) 
+ *  warmode(short(+object)) 
+ *  warmode(long(+object)) 
+ *  warmode(two_wheels(+object)) 
+ *  warmode(three_wheels(+object)) 
+ *  warmode(roof_open(+object)) 
+ *  warmode(roof_closed(+object)) 
+ *  warmode(zero_load(+object)) 
+ *  warmode(one_load(+object)) 
+ *  warmode(two_load(+object)) 
+ *  warmode(three_load(+object)) 
+ *  warmode(circle(+object)) 
+ *  warmode(triangle(+object)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(train(+A,-B)) 
+ *  root(train(A,B)) 
+ *  rmode(inf:has_car(+A,+-B,+-C)) 
+ *  rmode(inf:has_load(+A,+-B,+-C)) 
+ *  rmode(inf:edge(+A,+-B,+-C)) 
+ *  rmode(inf:instance(+A,+-B)) 
+ *  rmode(inf:train(+A)) 
+ *  rmode(inf:car(+A)) 
+ *  rmode(inf:load(+A)) 
+ *  rmode(inf:short(+A)) 
+ *  rmode(inf:long(+A)) 
+ *  rmode(inf:two_wheels(+A)) 
+ *  rmode(inf:three_wheels(+A)) 
+ *  rmode(inf:roof_open(+A)) 
+ *  rmode(inf:roof_closed(+A)) 
+ *  rmode(inf:zero_load(+A)) 
+ *  rmode(inf:one_load(+A)) 
+ *  rmode(inf:two_load(+A)) 
+ *  rmode(inf:three_load(+A)) 
+ *  rmode(inf:circle(+A)) 
+ *  rmode(inf:triangle(+A)) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(has_car(id,node_id,node_id)) 
+ *  type(has_load(id,node_id,node_id)) 
+ *  type(edge(id,node_id,object)) 
+ *  type(instance(id,node_id)) 
+ *  type(train(object)) 
+ *  type(car(object)) 
+ *  type(load(object)) 
+ *  type(short(object)) 
+ *  type(long(object)) 
+ *  type(two_wheels(object)) 
+ *  type(three_wheels(object)) 
+ *  type(roof_open(object)) 
+ *  type(roof_closed(object)) 
+ *  type(zero_load(object)) 
+ *  type(one_load(object)) 
+ *  type(two_load(object)) 
+ *  type(three_load(object)) 
+ *  type(circle(object)) 
+ *  type(triangle(object)) 
+ *  type(train(A,B)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 0.02
+
+Model:
+    Complexity: 0.0 nodes, 0.0 literals
+    C4.5 error estimate: 164.649621133003, relative: 0.521043104851277
+Training:
+    Number of examples: 316
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 0         158       | 158
+    neg       | 0         158       | 158
+    ----------------------------------------------
+              | 0         316       | 316
+
+    Accuracy: 0.5 (stderr: 0.0281271975231506, default: 0.5)
+    Cramer's coefficient: 0.0
+    Class: pos: TP = 0.0, FP = 0.0
+Testing:
+    No examples available.
+
+
+Compact notation of tree:
+
+[neg] 316.0 [[pos:158.0,neg:158.0]]
+
+Equivalent prolog program:
+
+train(A,[neg]).
+% 158.0/316.0=0.5
+
+

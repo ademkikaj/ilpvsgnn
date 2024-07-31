@@ -1,0 +1,2 @@
+distance(white_king(Id,N1,F1,R1),black_king(Id,N1,F2,R2),D) :-  D1 is abs(F1-F2), D2 is abs(R2-R1), D is max(D1,D2).
+one(1).

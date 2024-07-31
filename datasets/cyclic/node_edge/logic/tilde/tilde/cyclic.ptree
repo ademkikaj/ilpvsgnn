@@ -1,0 +1,18 @@
+cyclic(-A,-B)
+edge(A,-C),edge(C,-D) ? 
++--yes: edge(D,-E),edge(E,-F) ? 
+|       +--yes: node(E,-G),node(A,G) ? 
+|       |       +--yes: edge(F,-H) ? 
+|       |       |       +--yes: node(F,-I),node(C,I) ? 
+|       |       |       |       +--yes: edge(C,-J),node(J,G) ? 
+|       |       |       |       |       +--yes: [pos] 69.0 [[pos:69.0,neg:0.0]]
+|       |       |       |       |       +--no:  green(G) ? 
+|       |       |       |       |               +--yes: edge(D,-K),node(K,I) ? 
+|       |       |       |       |               |       +--yes: [pos] 10.0 [[pos:9.0,neg:1.0]]
+|       |       |       |       |               |       +--no:  [neg] 3.0 [[pos:1.0,neg:2.0]]
+|       |       |       |       |               +--no:  [pos] 12.0 [[pos:12.0,neg:0.0]]
+|       |       |       |       +--no:  [neg] 2.0 [[pos:0.0,neg:2.0]]
+|       |       |       +--no:  [neg] 4.0 [[pos:0.0,neg:4.0]]
+|       |       +--no:  [neg] 8.0 [[pos:0.0,neg:8.0]]
+|       +--no:  [neg] 18.0 [[pos:0.0,neg:18.0]]
++--no:  [neg] 56.0 [[pos:0.0,neg:56.0]]

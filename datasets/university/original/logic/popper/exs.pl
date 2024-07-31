@@ -1,0 +1,29 @@
+:- discontiguous pos/1. 
+:- discontiguous neg/1. 
+neg(university(12,pos)).
+neg(university(13,pos)).
+neg(university(14,pos)).
+neg(university(15,pos)).
+neg(university(16,pos)).
+neg(university(17,pos)).
+neg(university(18,pos)).
+neg(university(19,pos)).
+neg(university(20,pos)).
+neg(university(21,pos)).
+neg(university(22,pos)).
+neg(university(23,pos)).
+neg(university(24,pos)).
+neg(university(25,neg)).
+neg(university(26,neg)).
+neg(university(27,neg)).
+neg(university(28,neg)).
+neg(university(29,neg)).
+neg(university(30,neg)).
+neg(university(31,neg)).
+neg(university(32,neg)).
+neg(university(33,neg)).
+neg(university(34,neg)).
+neg(university(35,neg)).
+neg(university(36,neg)).
+neg(university(37,neg)).
+neg(university(38,neg)).

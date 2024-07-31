@@ -1,0 +1,37 @@
+:- style_check(-singleton).
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,pos):- edge(A,B),klog_edge(B), !.
+cyclic(A,neg).

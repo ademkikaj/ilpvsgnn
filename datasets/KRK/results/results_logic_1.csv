@@ -1,0 +1,13 @@
+test_acc,runtime,train_acc,system,representation
+0.66,2.278898000717163,0.6575,Tilde,node_only
+0.0,0.5877387523651123,0.0,Popper,node_only
+0.34,100.7049810886383,1.0,Aleph,node_only
+0.91,2.477977991104126,0.9,Tilde,node_edge
+0.0,1.8967080116271973,0.0,Popper,node_edge
+0.34,19.1487238407135,1.0,Aleph,node_edge
+0.91,2.8242428302764893,0.9,Tilde,edge_based
+0.0,6.446147918701172,0.0,Popper,edge_based
+0.34,90.43089413642883,1.0,Aleph,edge_based
+0.88,2.1410038471221924,0.88,Tilde,Klog
+0.0,4.370971918106079,0.0,Popper,Klog
+0.34,7.506771087646484,1.0,Aleph,Klog

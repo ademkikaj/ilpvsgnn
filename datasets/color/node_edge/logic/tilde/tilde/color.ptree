@@ -1,0 +1,8 @@
+color(-A,-B,-C)
+edge(A,-D,-E) ? 
++--yes: node(A,B,-F) ? 
+|       +--yes: [pos] 127.0 [[pos:71.0,neg:56.0]]
+|       +--no:  [pos] 27.0 [[pos:18.0,neg:9.0]]
++--no:  node(A,B,-G) ? 
+        +--yes: [neg] 11.0 [[pos:2.0,neg:9.0]]
+        +--no:  [neg] 17.0 [[pos:0.0,neg:17.0]]

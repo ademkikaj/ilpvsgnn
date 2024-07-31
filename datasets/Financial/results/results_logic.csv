@@ -1,0 +1,2 @@
+test_acc,runtime,train_acc,system,representation
+0.9787234042553192,20.28302311897278,0.973262032085562,Tilde,node_edge

@@ -1,0 +1,8 @@
+sameGen(-A,-B,-C,-D)
+parent(A,-E,-F) ? 
++--yes: parent(A,E,C) ? 
+|       +--yes: parent(A,-G,B) ? 
+|       |       +--yes: [neg] 52.0 [[pos:19.0,neg:33.0]]
+|       |       +--no:  [neg] 31.0 [[pos:13.0,neg:18.0]]
+|       +--no:  [neg] 31.0 [[pos:7.0,neg:24.0]]
++--no:  [pos] 44.0 [[pos:40.0,neg:4.0]]

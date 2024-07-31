@@ -1,0 +1,14 @@
+mutag(-A,-B)
+benzene(A,-C,-D) ? 
++--yes: nitro(A,C,D) ? 
+|       +--yes: [pos] 10.0 [[pos:8.0,neg:2.0]]
+|       +--no:  nitro(A,-E,D) ? 
+|               +--yes: [pos] 112.0 [[pos:77.0,neg:35.0]]
+|               +--no:  nitro(A,D,-F) ? 
+|                       +--yes: bond(A,-G,F,-H) ? 
+|                       |       +--yes: bond(A,F,-I,H) ? 
+|                       |       |       +--yes: [neg] 10.0 [[pos:4.0,neg:6.0]]
+|                       |       |       +--no:  [pos] 3.0 [[pos:2.0,neg:1.0]]
+|                       |       +--no:  [pos] 7.0 [[pos:5.0,neg:2.0]]
+|                       +--no:  [pos] 6.0 [[pos:4.0,neg:2.0]]
++--no:  [neg] 2.0 [[pos:0.0,neg:2.0]]

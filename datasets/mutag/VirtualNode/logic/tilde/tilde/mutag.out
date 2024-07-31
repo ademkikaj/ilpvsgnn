@@ -1,0 +1,185 @@
+/** -------------------------------------------------
+ ** Algorithm:   Tilde
+ ** Output type: out
+ ** Date:        3/25/2024 9:19:5
+ ** ACE version: 1.2.20
+ ** Hardware:    67dade7dcba9 : x86_64 running Linux
+ ** -------------------------------------------------
+ ** Settings:
+ **
+ ** Common ** 
+ *  heuristic : gainratio (default) 
+ *  tilde_mode : classify (default) 
+ *  intra_literal_sharing : yes (default) 
+ *  query_batch_size : default (default) 
+ *  single_query_generation : no (default) 
+ *  inst_generation_prob : 1.0 (default) 
+ *  rmode_inst_generation_prob : 1.0 (default) 
+ *  query_sample_probability : 1.0 (default) 
+ *  query_sample_algo : smart (default) 
+ *  aggregate_refiners : no (default) 
+ *  aggregate_recursion : no (default) 
+ *  aggregate_maxconjuncts : 2 (default) 
+ *  aggregate_lookahead : no (default) 
+ *  aggregate_refinement : no (default) 
+ *  example_cache : 102400 (default) 
+ *  select_root_models : on (default) 
+ *  write_predictions : [testing,distribution] 
+ *  compatibility : ace1.1 (default) 
+ *  max_query_len : inf (default) 
+ *  log_pid : off (default) 
+ *  nsplit_unsorted_fractions : 0 (default) 
+ *  nsplit_sorting : basic (default) 
+ *  nsplit_version : basic (default) 
+ *  nsplit_talking : off (default) 
+ *  discretize : entropy (default) 
+ *  transform_queries : once (default) 
+ *  output_dir : default (default) 
+ *  bg_file : default (default) 
+ *  kb_file : default (default) 
+ *  randomise : none (default) 
+ *  report_timings : off (default) 
+ *  default_prefix : off (default) 
+ *  default_min : 1 (default) 
+ *  default_preprocessing : off (default) 
+ *  mi_distance_maxsample : 100 (default) 
+ *  language_warnings : on (default) 
+ *  expert_implicit_language : off (default) 
+ *  granularity : 10 (default) 
+ *  leave_out : false (default) 
+ *  classes : [pos,neg] 
+ *  use_packs : ilp (default) 
+ *  outerloop : queries (default) 
+ *  talking : 3 (default) 
+ *  load : key (default) 
+ ** Tilde ** 
+ *  combining_rules_EMiters : 10 (default) 
+ *  combining_rules_EMruns : 5 (default) 
+ *  combining_rules : off (default) 
+ *  write_ensemble_models : [] (default) 
+ *  tilde_maxdepth : inf (default) 
+ *  exhaustive_lookahead : 0 (default) 
+ *  query_length_bias : short (default) 
+ *  special_min : 0.0 (default) 
+ *  out_of_bag : no (default) 
+ *  roulette_wheel_selection : no (default) 
+ *  tilde_rst_optimization : no (default) 
+ *  repeat_exec_time : 1 (default) 
+ *  combination_rule : [product,sum] 
+ *  show_averages : 1 (default) 
+ *  classify_mode : 0 (default) 
+ *  complexity_penalty : 1.0 (default) 
+ *  precompute : [] (default) 
+ *  resume : off (default) 
+ *  m_estimate : none (default) 
+ *  output_options : [c45,c45c,c45e,lp,prolog] 
+ *  prune_rules : false (default) 
+ *  confidence_level : 0.25 (default) 
+ *  random_test_set : 0 (default) 
+ *  random_validation_set : 0 (default) 
+ *  stopping_criterion : mincases (default) 
+ *  pruning : c45 (default) 
+ *  discretization : none (default) 
+ *  multiscore_2 : off (default) 
+ *  multiscore : off (default) 
+ *  sampling_strategy : fixed(1000) (default) 
+ *  max_querytime : 100 (default) 
+ *  accuracy : 1.0 (default) 
+ *  tilde_test_eval_model : std (default) 
+ *  minimal_cases : 2 (default) 
+ *  ftest : 0.05 (default) 
+ *  tilde_version : 3.0 (default) 
+ ************** 
+ ** Language:
+ **
+ ** WARMODE BIAS ** 
+ *  warmode_key(mutag(+A,-B)) 
+ *  warmode(drug(+id,+-ind1,+-inda,+-logp,+-lumo)) 
+ *  warmode(c(+id,+-node_id)) 
+ *  warmode(n(+id,+-node_id)) 
+ *  warmode(o(+id,+-node_id)) 
+ *  warmode(h(+id,+-node_id)) 
+ *  warmode(cl(+id,+-node_id)) 
+ *  warmode(f(+id,+-node_id)) 
+ *  warmode(br(+id,+-node_id)) 
+ *  warmode(i(+id,+-node_id)) 
+ *  warmode(first(+id,+-node_id,+-node_id)) 
+ *  warmode(second(+id,+-node_id,+-node_id)) 
+ *  warmode(third(+id,+-node_id,+-node_id)) 
+ *  warmode(fourth(+id,+-node_id,+-node_id)) 
+ *  warmode(fifth(+id,+-node_id,+-node_id)) 
+ *  warmode(seventh(+id,+-node_id,+-node_id)) 
+ ** RMODE BIAS ** 
+ *  rmode_key(mutag(+A,-B)) 
+ *  root(mutag(A,B)) 
+ *  rmode(inf:drug(+A,+-B,+-C,+-D,+-E)) 
+ *  rmode(inf:c(+A,+-B)) 
+ *  rmode(inf:n(+A,+-B)) 
+ *  rmode(inf:o(+A,+-B)) 
+ *  rmode(inf:h(+A,+-B)) 
+ *  rmode(inf:cl(+A,+-B)) 
+ *  rmode(inf:f(+A,+-B)) 
+ *  rmode(inf:br(+A,+-B)) 
+ *  rmode(inf:i(+A,+-B)) 
+ *  rmode(inf:first(+A,+-B,+-C)) 
+ *  rmode(inf:second(+A,+-B,+-C)) 
+ *  rmode(inf:third(+A,+-B,+-C)) 
+ *  rmode(inf:fourth(+A,+-B,+-C)) 
+ *  rmode(inf:fifth(+A,+-B,+-C)) 
+ *  rmode(inf:seventh(+A,+-B,+-C)) 
+ *  max_lookahead(1) 
+ *  typed_language(yes) 
+ *  type(drug(id,ind1,inda,logp,lumo)) 
+ *  type(c(id,node_id)) 
+ *  type(n(id,node_id)) 
+ *  type(o(id,node_id)) 
+ *  type(h(id,node_id)) 
+ *  type(cl(id,node_id)) 
+ *  type(f(id,node_id)) 
+ *  type(br(id,node_id)) 
+ *  type(i(id,node_id)) 
+ *  type(first(id,node_id,node_id)) 
+ *  type(second(id,node_id,node_id)) 
+ *  type(third(id,node_id,node_id)) 
+ *  type(fourth(id,node_id,node_id)) 
+ *  type(fifth(id,node_id,node_id)) 
+ *  type(seventh(id,node_id,node_id)) 
+ *  type(mutag(A,B)) 
+ *  type(member(A,B)) 
+ *  type(for_int(A,B,C)) 
+ ******************** 
+ **/
+
+Average discretization time: 0.0
+Average induction time: 0.1
+
+Model:
+    Complexity: 0.0 nodes, 0.0 literals
+    C4.5 error estimate: 54.5804817547442, relative: 0.363869878364962
+Training:
+    Number of examples: 150
+
+    REAL\PRED | pos       neg       
+    ----------------------------------------------
+    pos       | 100       0         | 100
+    neg       | 50        0         | 50
+    ----------------------------------------------
+              | 150       0         | 150
+
+    Accuracy: 0.666666666666667 (stderr: 0.038490017945975, default: 0.666666666666667)
+    Cramer's coefficient: 0.0
+    Class: pos: TP = 1.0, FP = 1.0
+Testing:
+    No examples available.
+
+
+Compact notation of tree:
+
+[pos] 150.0 [[pos:100.0,neg:50.0]]
+
+Equivalent prolog program:
+
+mutag(A,[pos]).
+% 100.0/150.0=0.666666666666667
+
+

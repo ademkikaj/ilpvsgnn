@@ -1,0 +1,1 @@
+distance((X1,Y1),(X2,Y2),D) :- D1 is abs(X1-X2), D2 is abs(Y1-Y2),D is max(D1,D2).

@@ -1,0 +1,30 @@
+sameGen(-A,-B,-C)
+same_gen(B,-D) ? 
++--yes: same_gen(A,-E) ? 
+|       +--yes: parent(A,-F) ? 
+|       |       +--yes: parent(D,-G) ? 
+|       |       |       +--yes: parent(B,-H) ? 
+|       |       |       |       +--yes: parent(F,-I) ? 
+|       |       |       |       |       +--yes: parent(G,-J) ? 
+|       |       |       |       |       |       +--yes: [pos] 10.0 [[pos:10.0,neg:0.0]]
+|       |       |       |       |       |       +--no:  [neg] 5.0 [[pos:0.0,neg:5.0]]
+|       |       |       |       |       +--no:  parent(G,-K) ? 
+|       |       |       |       |               +--yes: parent(H,-L) ? 
+|       |       |       |       |               |       +--yes: [pos] 5.0 [[pos:3.0,neg:2.0]]
+|       |       |       |       |               |       +--no:  [neg] 2.0 [[pos:1.0,neg:1.0]]
+|       |       |       |       |               +--no:  [pos] 11.0 [[pos:11.0,neg:0.0]]
+|       |       |       |       +--no:  [pos] 7.0 [[pos:7.0,neg:0.0]]
+|       |       |       +--no:  [neg] 13.0 [[pos:0.0,neg:13.0]]
+|       |       +--no:  parent(B,-M) ? 
+|       |               +--yes: parent(E,-N) ? 
+|       |               |       +--yes: parent(M,-O) ? 
+|       |               |       |       +--yes: [neg] 2.0 [[pos:0.0,neg:2.0]]
+|       |               |       |       +--no:  [pos] 19.0 [[pos:18.0,neg:1.0]]
+|       |               |       +--no:  [neg] 5.0 [[pos:0.0,neg:5.0]]
+|       |               +--no:  parent(E,-P) ? 
+|       |                       +--yes: parent(D,-Q) ? 
+|       |                       |       +--yes: [pos] 12.0 [[pos:12.0,neg:0.0]]
+|       |                       |       +--no:  [neg] 3.0 [[pos:0.0,neg:3.0]]
+|       |                       +--no:  [pos] 39.0 [[pos:38.0,neg:1.0]]
+|       +--no:  [neg] 28.0 [[pos:0.0,neg:28.0]]
++--no:  [neg] 39.0 [[pos:0.0,neg:39.0]]

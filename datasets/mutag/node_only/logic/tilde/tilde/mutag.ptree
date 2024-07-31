@@ -1,0 +1,4 @@
+mutag(-A,-B)
+nitro(A,-C) ? 
++--yes: [pos] 148.0 [[pos:100.0,neg:48.0]]
++--no:  [neg] 2.0 [[pos:0.0,neg:2.0]]

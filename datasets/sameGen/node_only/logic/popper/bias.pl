@@ -1,0 +1,10 @@
+max_vars(8).
+max_body(6).
+head_pred(sameGen,3).
+body_pred(parent,3).
+body_pred(child,3).
+body_pred(edge,3).
+type(sameGen,(id,name,name)).
+type(parent,(id,node_id,name)).
+type(child,(id,node_id,name)).
+type(edge,(id,node_id,node_id)).

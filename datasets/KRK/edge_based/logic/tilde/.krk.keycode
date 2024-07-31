@@ -1,0 +1,9 @@
+'*$*krk'(A,B):-
+        bim_recorded(testmodel,C),
+        model_name__M_knowledge(C, [A,B]).
+hack_query(A,B):-
+        hack_query1__M_knowledge(A, B).
+hack_query_old(A,B):-
+        hack_query1__M_knowledge(A, B).
+select_example(A):-
+        bim_rerecord(testmodel,A).

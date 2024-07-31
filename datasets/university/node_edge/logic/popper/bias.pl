@@ -1,0 +1,14 @@
+max_vars(10).
+max_body(8).
+head_pred(university,1).
+body_pred(students,3).
+body_pred(course,4).
+body_pred(professor,4).
+body_pred(registered,5).
+body_pred(ra,5).
+type(university,(id,)).
+type(students,(id,node_id,ranking)).
+type(course,(id,course_id,diff,rating)).
+type(professor,(id,prof_id,teaching,pop)).
+type(registered,(id,node_id,course_id,grade,satis)).
+type(ra,(id,node_id,prof_id,sal,cap)).

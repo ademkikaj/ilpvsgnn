@@ -1,0 +1,18 @@
+bongard(-A,-B)
+shape(A,triangle,-C),in(A,C,-D) ? 
++--yes: shape(A,triangle,D) ? 
+|       +--yes: [pos] 62.0 [[pos:62.0,neg:0.0]]
+|       +--no:  shape(A,circle,D) ? 
+|               +--yes: shape(A,circle,-E),in(A,E,-F) ? 
+|               |       +--yes: [neg] 5.0 [[pos:0.0,neg:5.0]]
+|               |       +--no:  [pos] 22.0 [[pos:22.0,neg:0.0]]
+|               +--no:  shape(A,square,-G),in(A,G,-H) ? 
+|                       +--yes: shape(A,circle,H) ? 
+|                       |       +--yes: [pos] 7.0 [[pos:7.0,neg:0.0]]
+|                       |       +--no:  [neg] 16.0 [[pos:0.0,neg:16.0]]
+|                       +--no:  [neg] 31.0 [[pos:0.0,neg:31.0]]
++--no:  shape(A,circle,-I),in(A,I,-J) ? 
+        +--yes: [neg] 121.0 [[pos:0.0,neg:121.0]]
+        +--no:  shape(A,circle,-K) ? 
+                +--yes: [pos] 10.0 [[pos:10.0,neg:0.0]]
+                +--no:  [neg] 35.0 [[pos:0.0,neg:35.0]]
