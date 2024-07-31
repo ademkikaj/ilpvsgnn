@@ -17,14 +17,12 @@ import sys
 from pyswip import Prolog
 from sklearn.model_selection import train_test_split
 import subprocess
-# sys.path.insert(0, '../PyILP')
-# from ... import PyILP
 
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0,parentdir)
-from PyILP.PyILP import aleph_learn, metagol_learn, aleph_cross_validation, metagol_cross_validation
-from PyILP import *
+
+
 from Benchmark.tilde import Tilde
 from Benchmark.popper_system import Popper
 from Benchmark.aleph_system import Aleph

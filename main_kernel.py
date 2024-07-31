@@ -11,7 +11,6 @@ from torch_geometric.utils import to_dense_adj
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 import pandas as pd
-import string
 import itertools
 
 
@@ -141,9 +140,6 @@ def create_node_encoder(graphs,graphs_test):
             if row_tuple not in encoder:
                 encoder[row_tuple] = next(letter_iter)
     return encoder
-
-
-
 
 
 if __name__ == "__main__":

@@ -1,5 +1,35 @@
 :- style_check(-singleton).
-cyclic(A,pos):-edge(A,B),edge(B,A), !.
-cyclic(C,pos):-edge(C,C), !.
+cyclic(A,pos):-edge(A,B),edge(B,C),node(C,D),node(B,D),edge(A,C),edge(C,E),edge(A,E), !.
+cyclic(n_51_10,pos), !.
+cyclic(n_49_5,pos), !.
+cyclic(n_46_4,pos), !.
+cyclic(n_45_2,pos), !.
+cyclic(n_44_10,pos), !.
+cyclic(n_43_10,pos), !.
+cyclic(n_42_10,pos), !.
+cyclic(n_39_0,pos), !.
+cyclic(n_37_6,pos), !.
+cyclic(n_36_8,pos), !.
+cyclic(n_35_9,pos), !.
+cyclic(n_32_0,pos), !.
+cyclic(n_31_7,pos), !.
+cyclic(n_30_5,pos), !.
+cyclic(n_29_0,pos), !.
+cyclic(n_28_7,pos), !.
+cyclic(n_26_2,pos), !.
+cyclic(n_24_2,pos), !.
+cyclic(F,pos):-edge(F,G),edge(G,F), !.
+cyclic(n_21_2,pos), !.
+cyclic(n_19_9,pos), !.
+cyclic(n_15_10,pos), !.
+cyclic(n_14_0,pos), !.
+cyclic(n_13_6,pos), !.
+cyclic(n_12_5,pos), !.
+cyclic(n_11_2,pos), !.
+cyclic(n_6_5,pos), !.
+cyclic(H,pos):-edge(H,I),node(I,J),edge(H,K),edge(K,L),edge(L,I),node(L,J),node(H,J), !.
+cyclic(n_4_8,pos), !.
+cyclic(n_2_5,pos), !.
+cyclic(n_0_6,pos), !.
 
 cyclic(A,neg).

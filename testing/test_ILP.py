@@ -1,8 +1,7 @@
 import sys
 import os
 import pandas as pd
-from PyILP2.PyILP import aleph_learn
-from bongardGenerator.bongardGenerator import generate_bongard_example
+from utils.bongardGenerator.bongardGenerator import generate_bongard_example
 from Benchmark.aleph_system import Aleph
 from Benchmark.popper_system import Popper
 from Benchmark.tilde import Tilde

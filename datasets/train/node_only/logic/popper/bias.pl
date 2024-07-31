@@ -1,4 +1,5 @@
-max_body(5).
+max_vars(8).
+max_body(6).
 head_pred(train,1).
 body_pred(short,2).
 body_pred(long,2).

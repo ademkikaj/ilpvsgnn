@@ -21,13 +21,3 @@ neg(train(15)).
 neg(train(16)).
 pos(train(17)).
 pos(train(18)).
-neg(train(19)).
-neg(train(20)).
-pos(train(21)).
-neg(train(22)).
-neg(train(23)).
-pos(train(24)).
-neg(train(25)).
-neg(train(26)).
-pos(train(27)).
-pos(train(28)).

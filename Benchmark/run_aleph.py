@@ -1,6 +1,5 @@
 import sys
 import os
-from PyILP.PyILP import aleph_learn
 import logging
 import subprocess
 import tempfile
@@ -21,7 +20,6 @@ class Duration:
 
 
 def get_logger():
-    # TODO(Brad): Configure this somehow
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     return logging.getLogger("popperexperiments")
 

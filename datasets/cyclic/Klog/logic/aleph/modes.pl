@@ -5,7 +5,7 @@
 :- aleph.
 :- style_check(-discontiguous).
 :- aleph_set(verbosity,1).
-:- aleph_set(minpos,5).
+:- aleph_set(minpos,2).
 :- aleph_set(nodes,100000).
 :- modeh(1,cyclic(+id)).
 :- modeb(*,edge(+id,-id)).

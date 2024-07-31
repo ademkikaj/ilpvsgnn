@@ -4,11 +4,9 @@
 :- endif.
 :- aleph.
 :- style_check(-discontiguous).
-:- aleph_set(clauselength,12).
-:- aleph_set(i,6).
 :- aleph_set(verbosity,1).
-:- aleph_set(minpos,5).
-:- aleph_set(nodes,30000).
+:- aleph_set(minpos,2).
+:- aleph_set(nodes,100000).
 :- modeh(1,train(+id)).
 :- modeb(*,has_car(+id, -car_id)).
 :- modeb(*,has_load(+id, -car_id, -load_id)).

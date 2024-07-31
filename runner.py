@@ -16,11 +16,8 @@ class Run:
     
     def __init__(self,dataset_name,
                  representations,
-                 target,
-                 problem_id,
-                 GraphConverter,
-                 LogicConverter,
-                 ilp_settings,
+                 target="class",
+                 problem_id="id",
                  base_folder = "datasets",
                  result_id = None,
                  split_data = True):
@@ -37,6 +34,13 @@ class Run:
 
         # create the folders
         self.create_folders()
+
+        # create the converters
+        toGraphMod = importlib.import_module(f"Benchmark.{self.dataset_name}.toGraph")
+        GraphConverter = getattr(toGraphMod, "toGraph")
+        toLogicMod = importlib.import_module(f"Benchmark.{self.dataset_name}.toLogic")
+        LogicConverter = getattr(toLogicMod, "toLogic")
+    
 
         # split the data into train and test
         if split_data:
@@ -62,195 +66,7 @@ class Run:
 
         self.IlpConverter = toILP
 
-        self.ilp_settings = ilp_settings
-
-        self.TILDE = True
-        self.ALEPH = True
-        self.POPPER = False
-        self.GNN = True
-
-    def run(self):
-        
-        # convert to the different representations
-        self.convert_representations()
-
-        # convert to ILP input formats
-        self.convert_ilp()
-
-        # run the ILP systems
-        self.run_ilp()
-
-        # run the GNN models
-        self.run_gnn()
-        
-    def create_folders(self):
-        parent_dir = os.path.dirname(os.path.abspath(__file__))
-        self.base_path = os.path.join(self.base_folder,self.dataset_name)
-
-        # create representation folders
-        for repr in self.representations:
-            path = os.path.join(self.base_path, repr)
-            if not os.path.exists(path):
-                os.makedirs(path)
-            logic_path = os.path.join(path, "logic")
-            graph_path = os.path.join(path, "graph")
-            if not os.path.exists(logic_path):
-                os.makedirs(logic_path)
-            for ilp in self.ilp_systems:
-                ilp_path = os.path.join(logic_path, ilp)
-                if not os.path.exists(ilp_path):
-                    os.makedirs(ilp_path)
-            if not os.path.exists(graph_path):
-                os.makedirs(graph_path)
-        # Add relational folder with train and test folders
-        self.relational_path = os.path.join(self.base_path, "relational")
-        relational_path = self.relational_path 
-        if not os.path.exists(relational_path):
-            os.makedirs(relational_path)
-        self.relational_path_test = os.path.join(relational_path, "test")
-        if not os.path.exists(self.relational_path_test):
-            os.makedirs(self.relational_path_test)
-        self.relational_path_train = os.path.join(relational_path, "train")
-        if not os.path.exists(self.relational_path_train):
-            os.makedirs(self.relational_path_train)
-        # Add results folder
-        results_path = os.path.join(self.base_path, "results")
-        if not os.path.exists(results_path):
-            os.makedirs(results_path)
-    
-    def convert_representations(self):
-        for repr in self.representations:
-            # build the graph representations
-            string = f"self.graph_converter_train.{repr}()"
-            test_string = f"self.graph_converter_test.{repr}()"
-            graphs = eval(string)
-            graphs_test = eval(test_string)
-
-            # write the graphs to the graph directory
-            torch.save(graphs, os.path.join(self.base_path, repr, "graph", "train.pt"))
-            torch.save(graphs_test, os.path.join(self.base_path, repr, "graph", "test.pt"))
-
-            # convert the graphs to logic
-            if self.TILDE or self.ALEPH or self.POPPER:
-                output_path = os.path.join(self.base_path, repr, "logic",self.dataset_name + ".kb")
-                string = f"self.logic_converter_train.{repr}(graphs,'{output_path}')"
-                eval(string)
-                output_path_test = os.path.join(self.base_path, repr, "logic",self.dataset_name + "_test.kb")
-                string = f"self.logic_converter_test.{repr}(graphs_test,'{output_path_test}')"
-                eval(string)
-
-                # remove the truth labels from the test file
-                with open(output_path_test, "r") as file:
-                    lines = file.readlines()
-                new_test = []
-                for line in lines:
-                    if self.dataset_name not in line:
-                        new_test.append(line)
-                with open(output_path_test, "w") as file:
-                    for line in new_test:
-                        file.write(line)
-    
-    def convert_ilp(self):
-        if self.TILDE or self.ALEPH or self.POPPER:
-            for repr in self.representations:
-                ilp_converter = self.IlpConverter(relational_path = self.relational_path,
-                                                  logic_path = os.path.join(self.base_path, repr, "logic"),
-                                                  dataset_name = self.dataset_name)
-                logic_file_path = os.path.join(self.base_path, repr, "logic", self.dataset_name + ".kb")
-                if self.POPPER:
-                    ilp_converter.logicToPopper(logic_file_path = logic_file_path, label = self.dataset_name,bias_given = self.ilp_settings["popper"][repr])
-                if self.TILDE:
-                    ilp_converter.logicToTilde(logic_file_path = logic_file_path,givesettings = self.ilp_settings["tilde"][repr])
-                if self.ALEPH:
-                    ilp_converter.logicToAleph(logic_file_path = logic_file_path,label = self.dataset_name,given_settings = self.ilp_settings["aleph"][repr])
-
-    def run_ilp(self):
-        for repr in self.representations:
-            results = pd.DataFrame()
-
-            if self.TILDE:
-                tilde = Tilde(dataset_name=self.dataset_name, relational_path=self.relational_path,target=self.target)
-                tilde_results = tilde.run(tilde_input_path=os.path.join(self.base_path,repr))
-                tilde_results['representation'] = repr
-                results = pd.concat([results,tilde_results])
-            if self.POPPER:
-                popper = Popper(name=self.dataset_name,relational_path=self.relational_path,target=self.target)
-                popper_results = popper.run(representation_path=os.path.join(self.base_path,repr))
-                popper_results['representation'] = repr
-                results = pd.concat([results,popper_results])
-            if self.ALEPH:
-                aleph = Aleph(name=self.dataset_name, relational_path=self.relational_path,target=self.target)
-                aleph_results = aleph.run(representation_path=os.path.join(self.base_path,repr))
-                aleph_results['representation'] = repr
-                results = pd.concat([results,aleph_results])
-            
-            results.to_csv(os.path.join(self.base_path,"results",f"results_logic_{repr}.csv"),index=False)
-
-        # merge the logic results of the representations
-        if self.TILDE or self.POPPER or self.ALEPH:
-            total_results = pd.DataFrame()
-            for repr in self.representations:
-                results = pd.read_csv(os.path.join(self.base_path,"results",f"results_logic_{repr}.csv"))
-                os.remove(os.path.join(self.base_path,"results",f"results_logic_{repr}.csv"))
-                total_results = pd.concat([total_results,results])
-
-            if self.result_id is not None:
-                total_results.to_csv(os.path.join(self.base_path,"results",f"results_logic_{self.result_id}.csv"),index=False)
-            else:
-                total_results.to_csv(os.path.join(self.base_path,"results","results_logic.csv"),index=False)
-
-            # save the results per system as well
-            for system in total_results['system'].unique():
-                system_results = total_results[total_results['system'] == system]
-                system_results.to_csv(os.path.join(self.base_path,"results",f"results_logic_{system}.csv"),index=False)
-            
-            print(total_results)
-    
-
-    def run_gnn(self):
-        if self.GNN:
-            with open("Benchmark/gnn_config.yaml") as file:
-                config = yaml.safe_load(file)
-            
-            total_runs = len(config['models']) * len(config['layers']) * len(config['hidden_dims']) * len(self.representations) * config['repetitions']
-            done_runs = 0
-            total_gnn_data = pd.DataFrame()
-            for model in config['models']:
-                for layers in config['layers']:
-                    for hidden_dims in config['hidden_dims']:
-                        for representation in self.representations:
-                            print(f"Run {done_runs}/{total_runs}")
-                            graphs = torch.load(os.path.join(self.base_path,representation,"graph","train.pt"))
-                            test_graphs = torch.load(os.path.join(self.base_path,representation,"graph","test.pt"))
-                            result = self.benchmark.run_gnn(graphs,test_graphs,model,layers,hidden_dims,config)
-                            result['representation'] = representation
-                            total_gnn_data = pd.concat([total_gnn_data,result])
-                            done_runs += config['repetitions']
-
-            if self.result_id is not None:
-                total_gnn_data.to_csv(os.path.join(self.base_path,"results",f"results_gnn_{self.result_id}.csv"),index=False)
-            else:                   
-                total_gnn_data.to_csv(os.path.join(self.base_path,"results","results_gnn.csv"),index=False)
-            
-
-
-if __name__ == "__main__":
-
-    datasets = ["krk","bongard","train","mutag","nci","financial","cancer"]
-    dataset_name = "bongard"
-    representations = ["node_only","node_edge","edge_based","Klog"]
-    representations = ["node_edge","edge_based","Klog"]
-    representations = ["Klog"]
-    
-    target = "class"
-    problem_id = "id"
-
-    toGraphMod = importlib.import_module(f"Benchmark.{dataset_name}.toGraph")
-    toGraph = getattr(toGraphMod, "toGraph")
-    toLogicMod = importlib.import_module(f"Benchmark.{dataset_name}.toLogic")
-    toLogic = getattr(toLogicMod, "toLogic")
-    
-    ilp_settings = {
+        self.ilp_settings = {
         "color":{
             "tilde":{
                 "node_edge":[
@@ -1518,8 +1334,199 @@ if __name__ == "__main__":
             }
         }
     }
+
+        self.ilp_settings = self.ilp_settings[dataset_name]
+        self.TILDE = True
+        self.ALEPH = True
+        self.POPPER = True
+        self.GNN = True
+
+
+
+    def run(self):
+        
+        # convert to the different representations
+        self.convert_representations()
+
+        # convert to ILP input formats
+        self.convert_ilp()
+
+        # run the ILP systems
+        self.run_ilp()
+
+        # run the GNN models
+        self.run_gnn()
+        
+    def create_folders(self):
+        parent_dir = os.path.dirname(os.path.abspath(__file__))
+        self.base_path = os.path.join(self.base_folder,self.dataset_name)
+
+        # create representation folders
+        for repr in self.representations:
+            path = os.path.join(self.base_path, repr)
+            if not os.path.exists(path):
+                os.makedirs(path)
+            logic_path = os.path.join(path, "logic")
+            graph_path = os.path.join(path, "graph")
+            if not os.path.exists(logic_path):
+                os.makedirs(logic_path)
+            for ilp in self.ilp_systems:
+                ilp_path = os.path.join(logic_path, ilp)
+                if not os.path.exists(ilp_path):
+                    os.makedirs(ilp_path)
+            if not os.path.exists(graph_path):
+                os.makedirs(graph_path)
+        # Add relational folder with train and test folders
+        self.relational_path = os.path.join(self.base_path, "relational")
+        relational_path = self.relational_path 
+        if not os.path.exists(relational_path):
+            os.makedirs(relational_path)
+        self.relational_path_test = os.path.join(relational_path, "test")
+        if not os.path.exists(self.relational_path_test):
+            os.makedirs(self.relational_path_test)
+        self.relational_path_train = os.path.join(relational_path, "train")
+        if not os.path.exists(self.relational_path_train):
+            os.makedirs(self.relational_path_train)
+        # Add results folder
+        results_path = os.path.join(self.base_path, "results")
+        if not os.path.exists(results_path):
+            os.makedirs(results_path)
     
-    runner = Run(dataset_name,representations,target,problem_id,toGraph,toLogic,ilp_settings[dataset_name])
+    def convert_representations(self):
+        for repr in self.representations:
+            # build the graph representations
+            string = f"self.graph_converter_train.{repr}()"
+            test_string = f"self.graph_converter_test.{repr}()"
+            graphs = eval(string)
+            graphs_test = eval(test_string)
+
+            # write the graphs to the graph directory
+            torch.save(graphs, os.path.join(self.base_path, repr, "graph", "train.pt"))
+            torch.save(graphs_test, os.path.join(self.base_path, repr, "graph", "test.pt"))
+
+            # convert the graphs to logic
+            if self.TILDE or self.ALEPH or self.POPPER:
+                output_path = os.path.join(self.base_path, repr, "logic",self.dataset_name + ".kb")
+                string = f"self.logic_converter_train.{repr}(graphs,'{output_path}')"
+                eval(string)
+                output_path_test = os.path.join(self.base_path, repr, "logic",self.dataset_name + "_test.kb")
+                string = f"self.logic_converter_test.{repr}(graphs_test,'{output_path_test}')"
+                eval(string)
+
+                # remove the truth labels from the test file
+                with open(output_path_test, "r") as file:
+                    lines = file.readlines()
+                new_test = []
+                for line in lines:
+                    if self.dataset_name not in line:
+                        new_test.append(line)
+                with open(output_path_test, "w") as file:
+                    for line in new_test:
+                        file.write(line)
+    
+    def convert_ilp(self):
+        if self.TILDE or self.ALEPH or self.POPPER:
+            for repr in self.representations:
+                ilp_converter = self.IlpConverter(relational_path = self.relational_path,
+                                                  logic_path = os.path.join(self.base_path, repr, "logic"),
+                                                  dataset_name = self.dataset_name)
+                logic_file_path = os.path.join(self.base_path, repr, "logic", self.dataset_name + ".kb")
+                if self.POPPER:
+                    ilp_converter.logicToPopper(logic_file_path = logic_file_path, label = self.dataset_name,bias_given = self.ilp_settings["popper"][repr])
+                if self.TILDE:
+                    ilp_converter.logicToTilde(logic_file_path = logic_file_path,givesettings = self.ilp_settings["tilde"][repr])
+                if self.ALEPH:
+                    ilp_converter.logicToAleph(logic_file_path = logic_file_path,label = self.dataset_name,given_settings = self.ilp_settings["aleph"][repr])
+
+    def run_ilp(self):
+        for repr in self.representations:
+            results = pd.DataFrame()
+
+            if self.TILDE:
+                tilde = Tilde(dataset_name=self.dataset_name, relational_path=self.relational_path,target=self.target)
+                tilde_results = tilde.run(tilde_input_path=os.path.join(self.base_path,repr))
+                tilde_results['representation'] = repr
+                results = pd.concat([results,tilde_results])
+            if self.POPPER:
+                popper = Popper(name=self.dataset_name,relational_path=self.relational_path,target=self.target)
+                popper_results = popper.run(representation_path=os.path.join(self.base_path,repr))
+                popper_results['representation'] = repr
+                results = pd.concat([results,popper_results])
+            if self.ALEPH:
+                aleph = Aleph(name=self.dataset_name, relational_path=self.relational_path,target=self.target)
+                aleph_results = aleph.run(representation_path=os.path.join(self.base_path,repr))
+                aleph_results['representation'] = repr
+                results = pd.concat([results,aleph_results])
+            
+            results.to_csv(os.path.join(self.base_path,"results",f"results_logic_{repr}.csv"),index=False)
+
+        # merge the logic results of the representations
+        if self.TILDE or self.POPPER or self.ALEPH:
+            total_results = pd.DataFrame()
+            for repr in self.representations:
+                results = pd.read_csv(os.path.join(self.base_path,"results",f"results_logic_{repr}.csv"))
+                os.remove(os.path.join(self.base_path,"results",f"results_logic_{repr}.csv"))
+                total_results = pd.concat([total_results,results])
+
+            if self.result_id is not None:
+                total_results.to_csv(os.path.join(self.base_path,"results",f"results_logic_{self.result_id}.csv"),index=False)
+            else:
+                total_results.to_csv(os.path.join(self.base_path,"results","results_logic.csv"),index=False)
+
+            # save the results per system as well
+            for system in total_results['system'].unique():
+                system_results = total_results[total_results['system'] == system]
+                system_results.to_csv(os.path.join(self.base_path,"results",f"results_logic_{system}.csv"),index=False)
+            
+            print(total_results)
+    
+
+    def run_gnn(self):
+        if self.GNN:
+            with open("Benchmark/gnn_config.yaml") as file:
+                config = yaml.safe_load(file)
+            
+            total_runs = len(config['models']) * len(config['layers']) * len(config['hidden_dims']) * len(self.representations) * config['repetitions']
+            done_runs = 0
+            total_gnn_data = pd.DataFrame()
+            for model in config['models']:
+                for layers in config['layers']:
+                    for hidden_dims in config['hidden_dims']:
+                        for representation in self.representations:
+                            print(f"Run {done_runs}/{total_runs}")
+                            graphs = torch.load(os.path.join(self.base_path,representation,"graph","train.pt"))
+                            test_graphs = torch.load(os.path.join(self.base_path,representation,"graph","test.pt"))
+                            result = self.benchmark.run_gnn(graphs,test_graphs,model,layers,hidden_dims,config)
+                            result['representation'] = representation
+                            total_gnn_data = pd.concat([total_gnn_data,result])
+                            done_runs += config['repetitions']
+
+            if self.result_id is not None:
+                total_gnn_data.to_csv(os.path.join(self.base_path,"results",f"results_gnn_{self.result_id}.csv"),index=False)
+            else:                   
+                total_gnn_data.to_csv(os.path.join(self.base_path,"results","results_gnn.csv"),index=False)
+            
+
+
+if __name__ == "__main__":
+
+    datasets = ["krk","bongard","train","mutag","nci","financial","cancer"]
+    dataset_name = "bongard"
+    representations = ["node_only","node_edge","edge_based","Klog"]
+    representations = ["node_edge","edge_based","Klog"]
+    representations = ["Klog"]
+    
+    target = "class"
+    problem_id = "id"
+
+    toGraphMod = importlib.import_module(f"Benchmark.{dataset_name}.toGraph")
+    toGraph = getattr(toGraphMod, "toGraph")
+    toLogicMod = importlib.import_module(f"Benchmark.{dataset_name}.toLogic")
+    toLogic = getattr(toLogicMod, "toLogic")
+    
+    
+    
+    runner = Run(dataset_name,representations)
     runner.TILDE = False
     runner.ALEPH = True
     runner.POPPER = False

@@ -1,7 +1,7 @@
 import os
 from runner import Run 
-from bongardGenerator.bongardGenerator import generate_bongard_example
-from bongardGenerator.bongardGenerator import generate_rule
+from utils.bongardGenerator.bongardGenerator import generate_bongard_example
+from utils.bongardGenerator.bongardGenerator import generate_rule
 from Benchmark.bongard.toLogic import toLogic
 from Benchmark.bongard.toGraph import toGraph
 import pandas as pd
@@ -183,7 +183,7 @@ ilpSettings = {
 
 # max bongard examples 392
 
-# rule = generate_rule(2)
+# rule = generate_rule(2)s
 # print("Rule: ", rule)
 
 # representations = ["node_edge"]
