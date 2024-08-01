@@ -1,9 +1,0 @@
-'*$*imdb'(A,B,C):-
-        bim_recorded(testmodel,D),
-        model_name__M_knowledge(D, [A,B,C]).
-hack_query(A,B):-
-        hack_query1__M_knowledge(A, B).
-hack_query_old(A,B):-
-        hack_query1__M_knowledge(A, B).
-select_example(A):-
-        bim_rerecord(testmodel,A).

@@ -11,7 +11,7 @@
 
 To perform the conversion to various representations and run the benchmarking the 'main.py' script should be used.
 ```
-python main.py
+    python main.py
 ```
 
 ### References

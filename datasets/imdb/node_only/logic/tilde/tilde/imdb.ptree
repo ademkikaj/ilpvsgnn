@@ -1,4 +1,0 @@
-imdb(-A,-B,-C,-D)
-genre(A,-E,-F) ? 
-+--yes: [neg] 84.0 [[pos:19.0,neg:65.0]]
-+--no:  [neg] 28.0 [[pos:3.0,neg:25.0]]
